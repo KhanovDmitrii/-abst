@@ -107,6 +107,29 @@
 Мотивация
 Для некоторых классов важно, чтобы существовал только один экземпляр.
 
+Пример реализации на языке программирования python:
+
+    def singleton(cls):
+        instances = {}
+        def getinstance():
+            if cls not in instances:
+                instances[cls] = cls()
+             return instances[cls]
+        return getinstance
+
+    @singleton
+    class MyClass:
+        pass
+
+     new_obj = MyClass() # singleton
+     print(id(new_obj))
+     super_new_obj = MyClass()
+     print(id(super_new_obj))
+     print(new_obj is super_new_obj)
+     print(type(new_obj))
+     print(isinstance(new_obj, type(new_obj)))
+     print(isinstance(super_new_obj, type(super_new_obj)))
+
 Достоинства:
 * контролируемый доступ к единственному экземпляру;
 * уменьшение числа имен;
